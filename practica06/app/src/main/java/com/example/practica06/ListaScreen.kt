@@ -1,5 +1,6 @@
 package com.example.practica06
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -21,6 +22,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.lazy.items
+import androidx.compose.ui.platform.LocalContext
 
 @Composable
 fun ListaScreen() {
@@ -41,10 +43,14 @@ fun ListaScreen() {
 
 @Composable
 fun ContactoItem(contacto: Contacto) {
+    val context = LocalContext.current
     Card(
         modifier = Modifier.fillMaxWidth(),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-        shape = RoundedCornerShape(12.dp)
+        shape = RoundedCornerShape(12.dp),
+        onClick = {
+            Toast.makeText(context, "Contacto: ${contacto.nombre}", Toast.LENGTH_SHORT).show()
+        }
     ) {
         Column(
             modifier = Modifier
